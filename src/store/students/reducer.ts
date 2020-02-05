@@ -31,7 +31,7 @@ export default function reduce(state = initialState, action: any): StudentsList 
             };
         case LOAD_STUDENTS_FROM_STORAGE:
             return {
-                students: JSON.parse(localStorage.getItem('studentList') || '{}')
+                students: JSON.parse(localStorage.getItem('studentList') || '[]')
             };
         default:
             return state;
