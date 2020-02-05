@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect, forwardRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MaterialTable from 'material-table';
-import { addStudent, editStudent, deleteStudent } from "../../store/students/actions";
+import { addStudent, editStudent, deleteStudent, loadStudentsFromStorage } from "../../store/students/actions";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
@@ -43,22 +43,24 @@ const tableIcons = {
 export function StudentsTable() {
     const students = useSelector(store => store.student.students);
     const dispatch = useDispatch();
-
+    useEffect(() => {
+        dispatch(loadStudentsFromStorage());
+    }, []);
     return (
         <div>
             <MaterialTable
                 icons={tableIcons}
                 columns={[
                     { title: "ФИО", field: "FIO" },
-                    { title: "Дата рождения", field: "birthday"/*, type: "date"*/ },
+                    { title: "Дата рождения", field: "birthday", type: "date" },
                     {
                         title: "Успеваемость",
                         field: "academicPerformance",
-                        lookup: { 34: "İstanbul", 63: "Şanlıurfa" }
+                        lookup: { 2: "Неуд", 3: "Удовл", 4: "Хор", 5: "Отл" }
                     }
                 ]}
                 data={students}
-                title="Demo Title"
+                title="Список студентов"
                 editable={{
                     onRowAdd: newData =>
                         new Promise(resolve => {

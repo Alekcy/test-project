@@ -1,10 +1,9 @@
-import {ADD_STUDENT, DELETE_STUDENT, EDIT_STUDENT} from './actionTypes'
+import { ADD_STUDENT, DELETE_STUDENT, EDIT_STUDENT, LOAD_STUDENTS_FROM_STORAGE } from './actionTypes'
 
 export interface Student {
     FIO: string
     birthday: string
-    academicPerformance: string
-    asd?: any
+    academicPerformance: number
     tableData?: any
 }
 
@@ -30,4 +29,8 @@ export interface DeleteStudentAction {
     payload: Student
 }
 
-export type StudentActionTypes = AddStudentAction | EditStudentAction | DeleteStudentAction;
+export interface LoadStudentsAction {
+    type: typeof LOAD_STUDENTS_FROM_STORAGE
+}
+
+export type StudentActionTypes = AddStudentAction | EditStudentAction | DeleteStudentAction | LoadStudentsAction;
