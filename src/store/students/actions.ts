@@ -1,27 +1,27 @@
 import { ADD_STUDENT, DELETE_STUDENT, EDIT_STUDENT } from './actionTypes';
-import { Student, StudentActionTypes } from './types'
+import { Student, StudentActionTypes, DeleteStudentAction, EditStudentAction, AddStudentAction } from './types'
 
-export function addStudent(newStudent: Student): StudentActionTypes {
+export function addStudent(newStudent: Student): AddStudentAction {
     return {
         type: ADD_STUDENT,
         payload: newStudent
     }
 }
 
-export function editStudent(student: Student, id): StudentActionTypes {
+export function editStudent(studentNew: Student, studentOld: Student): EditStudentAction {
     return {
         type: EDIT_STUDENT,
         payload: {
-          student,
-          studentId: id,
+          studentNew,
+          studentOld,
         }
     }
 }
 
-export function deleteStudent(id: number): StudentActionTypes {
+export function deleteStudent(studentOld: Student): DeleteStudentAction {
     return {
         type: DELETE_STUDENT,
-        payload: id
+        payload: studentOld
     }
 }
 
