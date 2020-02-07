@@ -5,4 +5,6 @@ const rootReducer = combineReducers({
     student: reducer
 });
 
-export const store = createStore(rootReducer);
+export type StoreType = ReturnType<typeof rootReducer>;
+
+export const store: StoreType = createStore(rootReducer);
